@@ -2,6 +2,12 @@ namespace System.Threading.Tasks
 {
     public static class TaskMonad
     {
+        public static async Task<TResult> Select<TResult>(this Task task, Func<TResult> selector) 
+        {
+            await task;
+            return selector();
+        }
+
         public static async Task<TResult> Select<TSource, TResult>(this Task<TSource> task, Func<TSource, TResult> selector)
         {
             var x = await task.ConfigureAwait(false);
@@ -13,6 +19,18 @@ namespace System.Threading.Tasks
             var x = await task.ConfigureAwait(false);
             var y = await selector(x).ConfigureAwait(false);
             return projection(x, y);
+        }
+
+        public static async Task<T> RecoverWith<T>(this Task<T> task, Func<Exception, T> recover) 
+        {
+            try 
+            {
+                return await task;
+            }
+            catch(Exception ex) 
+            {
+                return recover(ex);
+            }
         }
     }
 
