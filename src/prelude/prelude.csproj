@@ -1,6 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <AssemblyTitle>Prelude</AssemblyTitle>
+    <Description>Prelude is a library with a number of useful utility functions and classes that encourage functional composition in C#</Description>  
+    <VersionPrefix>1.0.1</VersionPrefix>
     <TargetFramework>netstandard1.4</TargetFramework>
   </PropertyGroup>
 </Project>
