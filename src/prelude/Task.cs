@@ -34,7 +34,7 @@ namespace System.Threading.Tasks
         }
     }
 
-    public class Completed<T>
+    class Completed<T>
     {
         public static Task<T> Instance { get; } = Task<T>.FromResult(default(T));
 
@@ -44,4 +44,5 @@ namespace System.Threading.Tasks
 public partial class Prelude
 {
     public static System.Threading.Tasks.Task<T> Completed<T>() => System.Threading.Tasks.Completed<T>.Instance;
+    public static System.Threading.Tasks.Task Completed() => System.Threading.Tasks.Completed<int>.Instance;
 }
